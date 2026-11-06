@@ -45,6 +45,7 @@ const presentData = {
     { 
       id: 2, 
       label: "Minha Declaração de Amor", 
+      isLetter: true, // Identificador para exibir o texto completo de forma limpa
       description: `Oiii, minha princesa! ❤️
 
 Hoje a gente completa nosso primeiro ano oficial, 365 dias juntos, e é muito bom parar pra pensar em tudo que vivemos até aqui. Às vezes fico lembrando de como tudo começou e de como, aos poucos, você foi se tornando alguém tão importante pra mim. Hoje meu coração é cheio de amor e gratidão por ter você na minha vida.
@@ -145,14 +146,12 @@ function RomanticAtmosphere() {
 function AnimatedGradientBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 bg-[#FDF8F5]">
-      {/* Imagem de Fundo Suavizada */}
       <div 
         className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-multiply transition-opacity duration-1000"
         style={{ backgroundImage: "url('/assets/mapa-fundo.jpg.png')" }}
       />
       <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]" />
 
-      {/* Orbes Animadas */}
       <motion.div
         animate={{ scale: [1, 1.15, 1], x: [0, 40, 0], y: [0, 30, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
@@ -273,14 +272,14 @@ function GlassModal({ stop, gallery, onRemoveBrokenImage, onClose }: { stop: any
         animate={{ y: 0, opacity: 1, scale: 1 }}
         exit={{ y: 20, opacity: 0, scale: 0.95 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="w-full max-w-sm overflow-hidden rounded-3xl bg-[#FDFBF9] border border-amber-100/80 shadow-[0_30px_60px_rgba(0,0,0,0.2)] p-6 relative flex flex-col max-h-[90vh]"
+        className="w-full max-w-sm md:max-w-md overflow-hidden rounded-3xl bg-[#FDFBF9] border border-amber-100/80 shadow-[0_30px_60px_rgba(0,0,0,0.2)] p-6 relative flex flex-col max-h-[90vh]"
       >
         <header className="flex items-start justify-between gap-4 relative z-10 shrink-0">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-rose-500">
               Capítulo {String(stop.id).padStart(2, '0')}
             </p>
-            <h2 className="mt-1 font-serif text-3xl font-medium text-stone-900">
+            <h2 className="mt-1 font-serif text-2xl md:text-3xl font-medium text-stone-900">
               {stop.label}
             </h2>
           </div>
@@ -292,7 +291,7 @@ function GlassModal({ stop, gallery, onRemoveBrokenImage, onClose }: { stop: any
           </button>
         </header>
 
-        {stop.hasGallery && gallery.length > 0 ? (
+        {stop.hasGallery && gallery.length > 0 && (
           <div className="mt-6 flex flex-col items-center shrink-0">
             <div className="relative flex aspect-[4/5] w-full items-center justify-center bg-white p-3 pb-11 shadow-[0_10px_30px_rgba(0,0,0,0.06)] border border-[#EBE3D5] rounded-md">
               <div className="relative w-full h-full overflow-hidden rounded-sm flex items-center justify-center bg-stone-100">
@@ -330,18 +329,11 @@ function GlassModal({ stop, gallery, onRemoveBrokenImage, onClose }: { stop: any
               </div>
             </div>
           </div>
-        ) : (
-          <div className="mt-6 flex aspect-[16/10] w-full flex-col items-center justify-center gap-3 rounded-xl bg-gradient-to-br from-rose-50 to-amber-50/50 border border-rose-100 shadow-inner relative z-10 overflow-hidden shrink-0">
-            <img src={stop.icon || "/assets/album.png"} alt={stop.label} className="w-12 h-12 object-contain opacity-70 drop-shadow-md" />
-            <p className="text-[10px] uppercase tracking-[0.2em] text-rose-500 font-medium">
-              {stop.id === 2 ? "Nossa Carta Especial" : "Capítulo da Nossa História"}
-            </p>
-          </div>
         )}
 
-        {/* Caixa de texto com scrollbar e alinhamento ajustado */}
-        <div className="mt-6 overflow-y-auto pr-2 pb-2 flex-grow min-h-0 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-rose-200 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent">
-          <p className={`text-sm leading-relaxed text-stone-600 font-medium relative z-10 whitespace-pre-line ${stop.id === 2 ? 'text-left' : 'text-center'}`}>
+        {/* Bloco de texto otimizado sem espaço vazio e com scroll suave */}
+        <div className={`mt-6 overflow-y-auto pr-2 pb-2 flex-grow min-h-0 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-rose-200 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent ${stop.isLetter ? 'max-h-[60vh]' : ''}`}>
+          <p className={`text-sm md:text-base leading-relaxed text-stone-700 font-medium relative z-10 whitespace-pre-line ${stop.isLetter ? 'text-left font-serif' : 'text-center'}`}>
             {stop.description}
           </p>
         </div>
