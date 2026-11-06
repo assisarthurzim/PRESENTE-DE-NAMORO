@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@layer base {
+  :root {
+    --radius: 1.25rem;
+
+    --background: #fbf9f5;
+    --foreground: #475569;
+    --card: #fdfdfc;
+    --card-foreground: #475569;
+    --popover: #fdfdfc;
+    --popover-foreground: #475569;
+
+    --primary: #e11d48;
+    --primary-foreground: #ffffff;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #475569;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+    --accent: #fdf2f8;
+    --accent-foreground: #475569;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #e11d48;
+
+    --glass: rgba(255, 255, 255, 0.58);
+    --glass-soft: rgba(255, 255, 255, 0.42);
+    --glass-border: rgba(255, 255, 255, 0.8);
+    --glass-foreground: #334155;
+    --glass-muted: #64748b;
+
+    --trail: rgba(225, 29, 72, 0.5);
+    --overlay: rgba(251, 249, 245, 0.55);
+
+    --slot: rgba(225, 29, 72, 0.32);
+    --slot-foreground: #64748b;
+
+    --shadow-soft: 0 14px 34px -22px rgba(51, 65, 85, 0.2);
+    --shadow-glass: 0 32px 70px -38px rgba(51, 65, 85, 0.3);
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(130%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility glass-soft {
+  background: var(--glass-soft);
+  backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility photo-slot {
+  border: 1px dashed var(--slot);
+  background: rgba(255, 255, 255, 0.3);
+}

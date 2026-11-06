@@ -1,0 +1,10 @@
+{
+  "interacoes": {
+    "correio": "Texto da sua carta aqui...",
+    "historia": [
+      {"data": "Novembro 2025", "marco": "Início de tudo..."}
+    ],
+    "fotos": ["/assets/foto1.png", "/assets/foto2.png"],
+    "futuro": "Aqui não é o fim, é apenas o começo da nossa história..."
+  }
+}
